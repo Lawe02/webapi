@@ -9,18 +9,15 @@ exports.data = (req, res) => {
 
   let recordList = [];
   
-  base('Design projects').select({
-      // Selecting the first 3 records in All projects:
-       
-      view: "All projects"
-  }).eachPage(function page(records, fetchNextPage) {
+  base('Design projects').select().eachPage(function page(records, fetchNextPage) {
       // This function (`page`) will get called for each page of records.
   
       records.forEach(function(record) {
-          let newTest = JSON.stringify(record._rawJson);
-          recordList.push({
-            "raw": newTest
-          });
+         recordList.push({
+           "record": record._rawJson
+
+         })
+         
         });
   
       // To fetch the next page of records, call `fetchNextPage`.
@@ -29,7 +26,7 @@ exports.data = (req, res) => {
       fetchNextPage();
   
   }, function done(err) {
-    res.send(JSON.stringify(recordList));
+    res.send(recordList);
 
       if (err) {
          console.error(err); return; 
