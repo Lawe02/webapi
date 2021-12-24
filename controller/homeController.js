@@ -9,7 +9,7 @@ exports.data = (req, res) => {
 
   let recordList = [];
   
-  base('Design projects').select().eachPage(function page(records, fetchNextPage) {
+  base('Clients').select().eachPage(function page(records, fetchNextPage) {
       // This function (`page`) will get called for each page of records.
   
       records.forEach(function(record) {
