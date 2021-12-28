@@ -11,23 +11,47 @@ req.onload = () => {
     
     let data = req.response;
 
-    data.forEach(element =>{
-        let recordBtn = document.createElement('button');
-
+    data.forEach((element, i) =>{
+        
         let recordItem = document.createElement('ul');//Skapar en varibel för li:t varje gong funktionen körs
 
-        document.getElementById('ulRecords').appendChild(recordBtn);
+        let recordBtn = document.createElement('button');
 
-        recordBtn.style.width = "50px";
-        recordBtn.style.height = "25px";
+        recordBtn.style.width = "250px";
+        recordBtn.style.height = "45px";
 
         recordItem.textContent = element.record.fields.Name;//lägger till id:t som finns i element till varje li
 
+        recordBtn.className = 'btnClass';
+        recordBtn.id = 'btnId'+ i;
+        recordBtn.textContent = element.record.fields.Name;
+
+
+        const container = document.getElementById('ulRecords');
+      
         document.getElementById('ulRecords').appendChild(recordItem);//li:n visas i en div i HTML
 
-    })
+        document.getElementById('ulRecords').appendChild(recordBtn);
 
-    // console.log(data);
+
+        let btnPressed;
+
+        container.addEventListener('click', function(e) {
+
+            if (e.target.classList.contains('btnClass')) {
+                if (e.target.innerHTML == element.record.fields.Name) {
+                    console.log(element.record.id);
+                    btnPressed = element.record.id.find();
+                    console.log(btnPressed)
+                }
+            }
+
+        })
+    });
+
+
+    // console.log(data);nodemon server.js
+
     // console.log(data.id);
     
     
