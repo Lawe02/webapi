@@ -33,16 +33,11 @@ req.onload = () => {
 
         document.getElementById('ulRecords').appendChild(recordBtn);
 
-
-        let btnPressed;
-
         container.addEventListener('click', function(e) {
 
             if (e.target.classList.contains('btnClass')) {
                 if (e.target.innerHTML == element.record.fields.Name) {
-                    console.log(element.record.id);
-                    btnPressed = element.record.id.find();
-                    console.log(btnPressed)
+                    console.log(JSON.stringify(element.record.fields));
                 }
             }
 
